@@ -13,6 +13,5 @@ namespace LJXMLRPC.Data
         public string name;
         public int id;
         public int sortorder;
-        public int bitwiseID;
     }
 }

@@ -47,20 +47,17 @@ namespace LJClient
         {
             double groupMask = friend.groupmask;
             List<string> groups = new List<string>();
-            foreach (FriendGroup group in groupList.Values)
-            {
-                if ((group.bitwiseID & friend.groupmask) == group.bitwiseID)
-                {
-                    groups.Add(group.name);
-                }
-            }
+			BitArray group = new BitArray(new int[] { friend.groupmask });
+			//We skip group 0 - it's the default group for all people...
+			for (int i = 1; i < group.Length; i++)
+			{
+				if (group[i])
+				{
+					groups.Add(groupList[i].name);
+				}
+			}
             return groups;
         }
-
-		private BitArray ListFromBitMask(int bitMask)
-		{
-			return new BitArray(new int[] { bitMask });
-		}
 
         private void ljName_Leave(object sender, EventArgs e)
         {
