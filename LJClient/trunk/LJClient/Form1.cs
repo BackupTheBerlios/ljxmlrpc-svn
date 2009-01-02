@@ -9,6 +9,7 @@ using LJXMLRPC;
 using LJXMLRPC.Data;
 using LJXMLRPC.Calls;
 using LJXMLRPC.Utils;
+using System.Collections;
 
 namespace LJClient
 {
@@ -23,15 +24,12 @@ namespace LJClient
         {
             friendsList.Items.Clear();
 
-            GetFriendsReply? friends = MakeCall.GetFriends();
+            GetFriendsReply friendsReply = MakeCall.GetFriends();
 
-            if (friends.HasValue)
-            {
-                foreach (Friend friend in friends.Value.friends)
+                foreach (Friend friend in friendsReply.friends)
                 {
-                    friendsList.Items.Add(UserDetails(friend, friends.Value.FriendGroups));
+                    friendsList.Items.Add(UserDetails(friend, friendsReply.FriendGroups));
                 }
-            }
         }
 
         private ListViewItem UserDetails(Friend friend, SortedList<int, FriendGroup> groupList)
@@ -58,6 +56,11 @@ namespace LJClient
             }
             return groups;
         }
+
+		private BitArray ListFromBitMask(int bitMask)
+		{
+			return new BitArray(new int[] { bitMask });
+		}
 
         private void ljName_Leave(object sender, EventArgs e)
         {

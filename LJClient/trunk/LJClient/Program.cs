@@ -15,8 +15,10 @@ namespace LJClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-            LoginInfo.ClientVersion = ".Net-AndrewDucker/0.0.1";
+
+			LoginInfo.ClientVersion = ".Net-AndrewDucker/0.0.1";
+			
+			Application.Run(new Form1());
         }
     }
 }

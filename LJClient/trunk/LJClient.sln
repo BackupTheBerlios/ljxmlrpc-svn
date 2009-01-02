@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LJClient", "LJClient\LJClient.csproj", "{7FA5150C-DFF0-4DE2-BED2-097479C77846}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LJXMLRPC", "..\LJXMLRPC\LJXMLRPC\LJXMLRPC.csproj", "{B83375C0-3ADC-40A6-B062-FD15D1802D9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LJXMLRPC", "LJXMLRPC\LJXMLRPC.csproj", "{B83375C0-3ADC-40A6-B062-FD15D1802D9E}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution

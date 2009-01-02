@@ -27,27 +27,19 @@ namespace LJXMLRPC
             return reply;
         }
 
-        public static GetFriendsReply? GetFriends()
-        {
-            try
-            {
-                ILJGetFriends getFriendsProxy = XmlRpcProxyGen.Create<ILJGetFriends>();
-                //Need to run Fiddler so that it redirects this request...
-                //proxy2.Proxy = new WebProxy("http://127.0.0.1:9999");
+		public static GetFriendsReply GetFriends()
+		{
+			ILJGetFriends getFriendsProxy = XmlRpcProxyGen.Create<ILJGetFriends>();
+			//Need to run Fiddler so that it redirects this request...
+			//proxy2.Proxy = new WebProxy("http://127.0.0.1:9999");
 
-                GetFriendsRequest request = new GetFriendsRequest(true, true);
-                LoginInfo.Populate(ref request);
-                GetFriendsReply reply = getFriendsProxy.GetFriends(request);
+			GetFriendsRequest request = new GetFriendsRequest(true, true);
+			LoginInfo.Populate(ref request);
+			GetFriendsReply reply = getFriendsProxy.GetFriends(request);
 
-                reply.PostProcess();
+			reply.PostProcess();
 
-                return reply;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                return null;
-            }
-        }
+			return reply;
+		}
     }
 }

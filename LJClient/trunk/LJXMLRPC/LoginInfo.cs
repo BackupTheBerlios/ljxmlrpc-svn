@@ -20,6 +20,6 @@ namespace LJXMLRPC
 
         public static string UserName = "";
         public static string PasswordHash = "";
-        public static string ClientVersion;
+        public static string ClientVersion = "";
     }
 }
