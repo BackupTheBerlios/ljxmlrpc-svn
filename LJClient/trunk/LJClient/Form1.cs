@@ -107,7 +107,7 @@ namespace LJClient
 			{
 				DataGridViewCheckBoxColumn column = new DataGridViewCheckBoxColumn();
 				column.HeaderText = group.Value.name;
-				column.Tag = group.Value;
+				column.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 				table.Columns.Add(group.Value.name,typeof(bool));
 				dataGridGroupsVsUsers.Columns.Add(column);
 				column.DataPropertyName = column.HeaderText;

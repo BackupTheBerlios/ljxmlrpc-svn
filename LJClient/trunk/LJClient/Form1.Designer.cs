@@ -215,10 +215,12 @@ namespace LJClient
 			// 
 			// UserNameColumn
 			// 
+			this.UserNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
 			this.UserNameColumn.DataPropertyName = "User Name";
 			this.UserNameColumn.HeaderText = "User Name";
 			this.UserNameColumn.Name = "UserNameColumn";
 			this.UserNameColumn.ReadOnly = true;
+			this.UserNameColumn.Width = 85;
 			// 
 			// Form1
 			// 
