@@ -58,7 +58,6 @@ namespace LJClient
 
         private List<string> Groups(SortedList<int, FriendGroup> groupList, Friend friend)
         {
-            double groupMask = friend.groupmask;
             List<string> groups = new List<string>();
 			BitArray group = new BitArray(new int[] { friend.groupmask });
 			//We skip group 0 - it's the default group for all people...
@@ -99,6 +98,37 @@ namespace LJClient
                 ljPassword.Text = "Retrieved";
             }
         }
+
+		private void btnGroupsVsUsers_Click(object sender, EventArgs e)
+		{
+			DataTable table = new DataTable();
+			table.Columns.Add("User Name",typeof(string));
+			foreach(KeyValuePair<int,FriendGroup> group in groups)
+			{
+				DataGridViewCheckBoxColumn column = new DataGridViewCheckBoxColumn();
+				column.HeaderText = group.Value.name;
+				column.Tag = group.Value;
+				table.Columns.Add(group.Value.name,typeof(bool));
+				dataGridGroupsVsUsers.Columns.Add(column);
+				column.DataPropertyName = column.HeaderText;
+			}
+			foreach (Friend friend in friends)
+			{
+				DataRow row = table.NewRow();
+				row["User Name"] = friend.UserName;
+				foreach (FriendGroup group in groups.Values)
+				{
+					row[group.name] = ((group.BitmapID & friend.groupmask) == group.BitmapID);
+				}
+				table.Rows.Add(row);
+			}
+			dataGridGroupsVsUsers.DataSource = table;
+		}
+
+		private void tblGroupsVsUsers_Paint(object sender, PaintEventArgs e)
+		{
+
+		}
 
     }
 }

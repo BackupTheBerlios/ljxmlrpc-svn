@@ -68,6 +68,11 @@ namespace LJXMLRPC.Calls
             {
                 friendofs[i].UserName = friendofs[i].username as string;
             }
+
+			for (int i = 0; i < friendgroups.Length; i++)
+			{
+				friendgroups[i].BitmapID = (int)Math.Pow(2, friendgroups[i].id);
+			}
         }
     }
 }

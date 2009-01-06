@@ -42,6 +42,16 @@ namespace LJClient
 			this.lblUserName = new System.Windows.Forms.Label();
 			this.lblPassword = new System.Windows.Forms.Label();
 			this.btnPopulateFriends = new System.Windows.Forms.Button();
+			this.FriendViews = new System.Windows.Forms.TabControl();
+			this.pgListOfGroups = new System.Windows.Forms.TabPage();
+			this.pgGroupsVsUsers = new System.Windows.Forms.TabPage();
+			this.btnGroupsVsUsers = new System.Windows.Forms.Button();
+			this.dataGridGroupsVsUsers = new System.Windows.Forms.DataGridView();
+			this.UserNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.FriendViews.SuspendLayout();
+			this.pgListOfGroups.SuspendLayout();
+			this.pgGroupsVsUsers.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridGroupsVsUsers)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// getFriends
@@ -65,7 +75,7 @@ namespace LJClient
             this.friendsGroup3,
             this.friendsGroup4});
 			this.friendsList.FullRowSelect = true;
-			this.friendsList.Location = new System.Drawing.Point(12, 120);
+			this.friendsList.Location = new System.Drawing.Point(6, 6);
 			this.friendsList.Name = "friendsList";
 			this.friendsList.Size = new System.Drawing.Size(721, 460);
 			this.friendsList.TabIndex = 3;
@@ -148,21 +158,88 @@ namespace LJClient
 			this.btnPopulateFriends.UseVisualStyleBackColor = true;
 			this.btnPopulateFriends.Click += new System.EventHandler(this.btnPopulateFriends_Click);
 			// 
+			// FriendViews
+			// 
+			this.FriendViews.Controls.Add(this.pgListOfGroups);
+			this.FriendViews.Controls.Add(this.pgGroupsVsUsers);
+			this.FriendViews.Location = new System.Drawing.Point(12, 141);
+			this.FriendViews.Name = "FriendViews";
+			this.FriendViews.SelectedIndex = 0;
+			this.FriendViews.Size = new System.Drawing.Size(772, 396);
+			this.FriendViews.TabIndex = 11;
+			// 
+			// pgListOfGroups
+			// 
+			this.pgListOfGroups.Controls.Add(this.friendsList);
+			this.pgListOfGroups.Location = new System.Drawing.Point(4, 22);
+			this.pgListOfGroups.Name = "pgListOfGroups";
+			this.pgListOfGroups.Padding = new System.Windows.Forms.Padding(3);
+			this.pgListOfGroups.Size = new System.Drawing.Size(764, 370);
+			this.pgListOfGroups.TabIndex = 0;
+			this.pgListOfGroups.Text = "List Of Groups";
+			this.pgListOfGroups.UseVisualStyleBackColor = true;
+			// 
+			// pgGroupsVsUsers
+			// 
+			this.pgGroupsVsUsers.AutoScroll = true;
+			this.pgGroupsVsUsers.Controls.Add(this.dataGridGroupsVsUsers);
+			this.pgGroupsVsUsers.Location = new System.Drawing.Point(4, 22);
+			this.pgGroupsVsUsers.Name = "pgGroupsVsUsers";
+			this.pgGroupsVsUsers.Padding = new System.Windows.Forms.Padding(3);
+			this.pgGroupsVsUsers.Size = new System.Drawing.Size(764, 370);
+			this.pgGroupsVsUsers.TabIndex = 1;
+			this.pgGroupsVsUsers.Text = "Groups Vs Users";
+			this.pgGroupsVsUsers.UseVisualStyleBackColor = true;
+			// 
+			// btnGroupsVsUsers
+			// 
+			this.btnGroupsVsUsers.AutoSize = true;
+			this.btnGroupsVsUsers.Location = new System.Drawing.Point(421, 124);
+			this.btnGroupsVsUsers.Name = "btnGroupsVsUsers";
+			this.btnGroupsVsUsers.Size = new System.Drawing.Size(141, 23);
+			this.btnGroupsVsUsers.TabIndex = 12;
+			this.btnGroupsVsUsers.Text = "Populate Groups Vs Users";
+			this.btnGroupsVsUsers.UseVisualStyleBackColor = true;
+			this.btnGroupsVsUsers.Click += new System.EventHandler(this.btnGroupsVsUsers_Click);
+			// 
+			// dataGridGroupsVsUsers
+			// 
+			this.dataGridGroupsVsUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridGroupsVsUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.UserNameColumn});
+			this.dataGridGroupsVsUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataGridGroupsVsUsers.Location = new System.Drawing.Point(3, 3);
+			this.dataGridGroupsVsUsers.Name = "dataGridGroupsVsUsers";
+			this.dataGridGroupsVsUsers.Size = new System.Drawing.Size(758, 364);
+			this.dataGridGroupsVsUsers.TabIndex = 0;
+			// 
+			// UserNameColumn
+			// 
+			this.UserNameColumn.DataPropertyName = "User Name";
+			this.UserNameColumn.HeaderText = "User Name";
+			this.UserNameColumn.Name = "UserNameColumn";
+			this.UserNameColumn.ReadOnly = true;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(855, 592);
+			this.Controls.Add(this.btnGroupsVsUsers);
+			this.Controls.Add(this.FriendViews);
 			this.Controls.Add(this.btnPopulateFriends);
 			this.Controls.Add(this.lblPassword);
 			this.Controls.Add(this.lblUserName);
 			this.Controls.Add(this.ljPassword);
 			this.Controls.Add(this.ljName);
-			this.Controls.Add(this.friendsList);
 			this.Controls.Add(this.getFriends);
 			this.Name = "Form1";
 			this.Text = "Form1";
 			this.Load += new System.EventHandler(this.Form1_Load);
+			this.FriendViews.ResumeLayout(false);
+			this.pgListOfGroups.ResumeLayout(false);
+			this.pgGroupsVsUsers.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridGroupsVsUsers)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -184,6 +261,12 @@ namespace LJClient
         private System.Windows.Forms.Label lblUserName;
 		private System.Windows.Forms.Label lblPassword;
 		private System.Windows.Forms.Button btnPopulateFriends;
+		private System.Windows.Forms.TabControl FriendViews;
+		private System.Windows.Forms.TabPage pgListOfGroups;
+		private System.Windows.Forms.TabPage pgGroupsVsUsers;
+		private System.Windows.Forms.Button btnGroupsVsUsers;
+		private System.Windows.Forms.DataGridView dataGridGroupsVsUsers;
+		private System.Windows.Forms.DataGridViewTextBoxColumn UserNameColumn;
     }
 }
 
