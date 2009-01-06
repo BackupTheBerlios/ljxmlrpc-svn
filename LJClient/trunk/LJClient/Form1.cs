@@ -103,15 +103,18 @@ namespace LJClient
 		{
 			DataTable table = new DataTable();
 			table.Columns.Add("User Name",typeof(string));
-			foreach(KeyValuePair<int,FriendGroup> group in groups)
+			desiredColumnWidths = new Dictionary<string, int>();
+			dataGridGroupsVsUsers.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridGroupsVsUsers.Font.Name, 8);
+			foreach (KeyValuePair<int, FriendGroup> group in groups)
 			{
 				DataGridViewCheckBoxColumn column = new DataGridViewCheckBoxColumn();
 				column.HeaderText = group.Value.name;
-				column.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 				table.Columns.Add(group.Value.name,typeof(bool));
 				dataGridGroupsVsUsers.Columns.Add(column);
 				column.DataPropertyName = column.HeaderText;
+				desiredColumnWidths.Add(column.HeaderText,column.GetPreferredWidth(DataGridViewAutoSizeColumnMode.DisplayedCells,true));
 			}
+			SetMinimumWidthsForColumns();
 			foreach (Friend friend in friends)
 			{
 				DataRow row = table.NewRow();
@@ -125,9 +128,46 @@ namespace LJClient
 			dataGridGroupsVsUsers.DataSource = table;
 		}
 
-		private void tblGroupsVsUsers_Paint(object sender, PaintEventArgs e)
+		private void dataGridGroupsVsUsers_Resize(object sender, EventArgs e)
 		{
+			SetMinimumWidthsForColumns();
+		}
 
+		Dictionary<string, int> desiredColumnWidths = new Dictionary<string, int>();
+
+		private void SetMinimumWidthsForColumns()
+		{
+			int pixelstoSpend = dataGridGroupsVsUsers.Width -(dataGridGroupsVsUsers.Columns[0].Width + 60);
+			int minWidth = pixelstoSpend / groups.Count+1;
+			int pixelsToSpendThisRound = pixelstoSpend;
+			bool oneChanged = true;
+
+			while (pixelsToSpendThisRound > groups.Count && oneChanged)
+			{
+				pixelsToSpendThisRound = pixelstoSpend;
+				oneChanged = false;
+				minWidth++;
+				for (int i = 1; i < dataGridGroupsVsUsers.Columns.Count; i++)
+				{
+					DataGridViewColumn column = dataGridGroupsVsUsers.Columns[i];
+					if (desiredColumnWidths[column.HeaderText] < minWidth)
+					{
+						column.MinimumWidth = desiredColumnWidths[column.HeaderText];
+					}
+					else
+					{
+						column.MinimumWidth = minWidth;
+						oneChanged = true;
+					}
+					pixelsToSpendThisRound -= column.MinimumWidth;
+				}
+			}
+
+			foreach (DataGridViewColumn column in dataGridGroupsVsUsers.Columns)
+			{
+				column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+				column.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+			}
 		}
 
     }

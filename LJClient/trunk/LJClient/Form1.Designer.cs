@@ -160,12 +160,14 @@ namespace LJClient
 			// 
 			// FriendViews
 			// 
+			this.FriendViews.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.FriendViews.Controls.Add(this.pgListOfGroups);
 			this.FriendViews.Controls.Add(this.pgGroupsVsUsers);
 			this.FriendViews.Location = new System.Drawing.Point(12, 141);
 			this.FriendViews.Name = "FriendViews";
 			this.FriendViews.SelectedIndex = 0;
-			this.FriendViews.Size = new System.Drawing.Size(772, 396);
+			this.FriendViews.Size = new System.Drawing.Size(831, 396);
 			this.FriendViews.TabIndex = 11;
 			// 
 			// pgListOfGroups
@@ -186,7 +188,7 @@ namespace LJClient
 			this.pgGroupsVsUsers.Location = new System.Drawing.Point(4, 22);
 			this.pgGroupsVsUsers.Name = "pgGroupsVsUsers";
 			this.pgGroupsVsUsers.Padding = new System.Windows.Forms.Padding(3);
-			this.pgGroupsVsUsers.Size = new System.Drawing.Size(764, 370);
+			this.pgGroupsVsUsers.Size = new System.Drawing.Size(823, 370);
 			this.pgGroupsVsUsers.TabIndex = 1;
 			this.pgGroupsVsUsers.Text = "Groups Vs Users";
 			this.pgGroupsVsUsers.UseVisualStyleBackColor = true;
@@ -210,8 +212,9 @@ namespace LJClient
 			this.dataGridGroupsVsUsers.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridGroupsVsUsers.Location = new System.Drawing.Point(3, 3);
 			this.dataGridGroupsVsUsers.Name = "dataGridGroupsVsUsers";
-			this.dataGridGroupsVsUsers.Size = new System.Drawing.Size(758, 364);
+			this.dataGridGroupsVsUsers.Size = new System.Drawing.Size(817, 364);
 			this.dataGridGroupsVsUsers.TabIndex = 0;
+			this.dataGridGroupsVsUsers.Resize += new System.EventHandler(this.dataGridGroupsVsUsers_Resize);
 			// 
 			// UserNameColumn
 			// 
