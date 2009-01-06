@@ -20,17 +20,30 @@ namespace LJClient
             InitializeComponent();
         }
 
+		Friend[] friends;
+		SortedList<int,FriendGroup> groups;
+
         private void getFriends_Click(object sender, EventArgs e)
         {
-            friendsList.Items.Clear();
-
             GetFriendsReply friendsReply = MakeCall.GetFriends();
 
-                foreach (Friend friend in friendsReply.friends)
-                {
-                    friendsList.Items.Add(UserDetails(friend, friendsReply.FriendGroups));
-                }
+			friends = friendsReply.friends;
+			groups = friendsReply.FriendGroups;
+			
         }
+
+
+		private void btnPopulateFriends_Click(object sender, EventArgs e)
+		{
+			friendsList.Items.Clear();
+
+			List<ListViewItem> friendCollection = new List<ListViewItem>();
+			foreach (Friend friend in friends)
+			{
+				friendCollection.Add(UserDetails(friend, groups));
+			}
+			friendsList.Items.AddRange(friendCollection.ToArray());
+		}
 
         private ListViewItem UserDetails(Friend friend, SortedList<int, FriendGroup> groupList)
         {
@@ -86,5 +99,6 @@ namespace LJClient
                 ljPassword.Text = "Retrieved";
             }
         }
+
     }
 }
