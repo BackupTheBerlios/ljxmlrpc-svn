@@ -8,7 +8,7 @@ namespace LJXMLRPC
 {
     public static class LoginInfo
     {
-        public static void Populate<T>(ref T call) where T:ICallWithLogin
+        public static void PopulateWithLoginInfo(this CallLoginInfo call)
         {
             call.username = UserName;
             call.auth_method = "challenge";

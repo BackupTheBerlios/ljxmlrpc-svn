@@ -45,9 +45,10 @@ namespace LJClient
 			this.FriendViews = new System.Windows.Forms.TabControl();
 			this.pgListOfGroups = new System.Windows.Forms.TabPage();
 			this.pgGroupsVsUsers = new System.Windows.Forms.TabPage();
-			this.btnGroupsVsUsers = new System.Windows.Forms.Button();
 			this.dataGridGroupsVsUsers = new System.Windows.Forms.DataGridView();
 			this.UserNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.btnGroupsVsUsers = new System.Windows.Forms.Button();
+			this.btnAddFriend = new System.Windows.Forms.Button();
 			this.FriendViews.SuspendLayout();
 			this.pgListOfGroups.SuspendLayout();
 			this.pgGroupsVsUsers.SuspendLayout();
@@ -176,7 +177,7 @@ namespace LJClient
 			this.pgListOfGroups.Location = new System.Drawing.Point(4, 22);
 			this.pgListOfGroups.Name = "pgListOfGroups";
 			this.pgListOfGroups.Padding = new System.Windows.Forms.Padding(3);
-			this.pgListOfGroups.Size = new System.Drawing.Size(764, 370);
+			this.pgListOfGroups.Size = new System.Drawing.Size(823, 370);
 			this.pgListOfGroups.TabIndex = 0;
 			this.pgListOfGroups.Text = "List Of Groups";
 			this.pgListOfGroups.UseVisualStyleBackColor = true;
@@ -192,17 +193,6 @@ namespace LJClient
 			this.pgGroupsVsUsers.TabIndex = 1;
 			this.pgGroupsVsUsers.Text = "Groups Vs Users";
 			this.pgGroupsVsUsers.UseVisualStyleBackColor = true;
-			// 
-			// btnGroupsVsUsers
-			// 
-			this.btnGroupsVsUsers.AutoSize = true;
-			this.btnGroupsVsUsers.Location = new System.Drawing.Point(421, 124);
-			this.btnGroupsVsUsers.Name = "btnGroupsVsUsers";
-			this.btnGroupsVsUsers.Size = new System.Drawing.Size(141, 23);
-			this.btnGroupsVsUsers.TabIndex = 12;
-			this.btnGroupsVsUsers.Text = "Populate Groups Vs Users";
-			this.btnGroupsVsUsers.UseVisualStyleBackColor = true;
-			this.btnGroupsVsUsers.Click += new System.EventHandler(this.btnGroupsVsUsers_Click);
 			// 
 			// dataGridGroupsVsUsers
 			// 
@@ -225,11 +215,34 @@ namespace LJClient
 			this.UserNameColumn.ReadOnly = true;
 			this.UserNameColumn.Width = 85;
 			// 
+			// btnGroupsVsUsers
+			// 
+			this.btnGroupsVsUsers.AutoSize = true;
+			this.btnGroupsVsUsers.Location = new System.Drawing.Point(421, 124);
+			this.btnGroupsVsUsers.Name = "btnGroupsVsUsers";
+			this.btnGroupsVsUsers.Size = new System.Drawing.Size(141, 23);
+			this.btnGroupsVsUsers.TabIndex = 12;
+			this.btnGroupsVsUsers.Text = "Populate Groups Vs Users";
+			this.btnGroupsVsUsers.UseVisualStyleBackColor = true;
+			this.btnGroupsVsUsers.Click += new System.EventHandler(this.btnGroupsVsUsers_Click);
+			// 
+			// btnAddFriend
+			// 
+			this.btnAddFriend.AutoSize = true;
+			this.btnAddFriend.Location = new System.Drawing.Point(676, 103);
+			this.btnAddFriend.Name = "btnAddFriend";
+			this.btnAddFriend.Size = new System.Drawing.Size(110, 23);
+			this.btnAddFriend.TabIndex = 13;
+			this.btnAddFriend.Text = "Add AndrewDucker";
+			this.btnAddFriend.UseVisualStyleBackColor = true;
+			this.btnAddFriend.Click += new System.EventHandler(this.btnAddFriend_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(855, 592);
+			this.Controls.Add(this.btnAddFriend);
 			this.Controls.Add(this.btnGroupsVsUsers);
 			this.Controls.Add(this.FriendViews);
 			this.Controls.Add(this.btnPopulateFriends);
@@ -272,6 +285,7 @@ namespace LJClient
 		private System.Windows.Forms.Button btnGroupsVsUsers;
 		private System.Windows.Forms.DataGridView dataGridGroupsVsUsers;
 		private System.Windows.Forms.DataGridViewTextBoxColumn UserNameColumn;
+		private System.Windows.Forms.Button btnAddFriend;
     }
 }
 

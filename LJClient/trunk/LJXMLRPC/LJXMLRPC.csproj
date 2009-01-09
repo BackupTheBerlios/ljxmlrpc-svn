@@ -29,6 +29,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,18 +54,22 @@
       <HintPath>Libraries\CookComputing.XmlRpcV2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calls\EditFriends.cs" />
     <Compile Include="Calls\Login.cs" />
     <Compile Include="Calls\GetChallenge.cs" />
     <Compile Include="Data\Friend.cs" />
     <Compile Include="Data\FriendGroup.cs" />
     <Compile Include="Calls\GetFriends.cs" />
-    <Compile Include="ICallWithLogin.cs" />
+    <Compile Include="CallLoginInfo.cs" />
     <Compile Include="LoginInfo.cs" />
     <Compile Include="MakeCall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

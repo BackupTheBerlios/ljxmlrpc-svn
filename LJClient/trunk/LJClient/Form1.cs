@@ -170,5 +170,14 @@ namespace LJClient
 			}
 		}
 
+		private void btnAddFriend_Click(object sender, EventArgs e)
+		{
+			EditFriendsReply reply = MakeCall.EditFriends();
+			foreach (Friend friend in reply.added)
+			{
+				MessageBox.Show(friend.fullname);
+			}
+		}
+
     }
 }

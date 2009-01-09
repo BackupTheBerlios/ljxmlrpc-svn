@@ -14,17 +14,12 @@ namespace LJXMLRPC.Calls
     }
 
 
-    public struct LoginRequest:ICallWithLogin
+    public class LoginRequest:CallLoginInfo
     {
-        public string username { get; set; }
-        public string auth_method { get; set; }
-        public string auth_challenge { get; set; }
-        public string auth_response { get; set; }
-        public string clientversion { get; set; }
     }
 
     [XmlRpcMissingMapping(MappingAction.Ignore)]
-    public struct LoginReply
+    public class LoginReply
     {
         public string fullname;
         public string message;

@@ -13,7 +13,7 @@ namespace LJXMLRPC.Calls
     }
 
 
-    public struct GetChallengeReply
+    public class GetChallengeReply
     {
         public string auth_scheme;
         public string challenge;

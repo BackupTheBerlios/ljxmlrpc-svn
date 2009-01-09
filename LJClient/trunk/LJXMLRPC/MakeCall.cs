@@ -6,6 +6,7 @@ using CookComputing.XmlRpc;
 using System.Windows.Forms;
 using LJXMLRPC.Calls;
 using LJXMLRPC.Utils;
+using LJXMLRPC.Data;
 
 namespace LJXMLRPC
 {
@@ -21,9 +22,9 @@ namespace LJXMLRPC
         public static LoginReply Login()
         {
             ILJLogin loginProxy = XmlRpcProxyGen.Create<ILJLogin>();
-            LoginRequest loginRequest = new LoginRequest();
-            LoginInfo.Populate(ref loginRequest);
-            LoginReply reply = loginProxy.Login(loginRequest);
+            LoginRequest request = new LoginRequest();
+			request.PopulateWithLoginInfo();
+			LoginReply reply = loginProxy.Login(request);
             return reply;
         }
 
@@ -34,11 +35,23 @@ namespace LJXMLRPC
 			//proxy2.Proxy = new WebProxy("http://127.0.0.1:9999");
 
 			GetFriendsRequest request = new GetFriendsRequest(true, true);
-			LoginInfo.Populate(ref request);
+			request.PopulateWithLoginInfo();
 			GetFriendsReply reply = getFriendsProxy.GetFriends(request);
 
 			reply.PostProcess();
 
+			return reply;
+		}
+
+		public static EditFriendsReply EditFriends()
+		{
+			ILJEditFriends editFriendsProxy = XmlRpcProxyGen.Create<ILJEditFriends>();
+			EditFriendsRequest request = new EditFriendsRequest();
+			request.PopulateWithLoginInfo();
+			request.add = new Friend[1];
+			request.add[0] = new Friend();
+			request.add[0].username = "AndrewDucker";
+			EditFriendsReply reply = editFriendsProxy.EditFriends(request);
 			return reply;
 		}
     }

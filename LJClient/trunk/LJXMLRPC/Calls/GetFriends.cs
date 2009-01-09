@@ -13,9 +13,9 @@ namespace LJXMLRPC.Calls
         GetFriendsReply GetFriends(GetFriendsRequest getFriendsRequest);
     }
 
-    public struct GetFriendsRequest:ICallWithLogin
+    public class GetFriendsRequest:CallLoginInfo
     {
-        public GetFriendsRequest(bool includefriendsof, bool includegroups):this()
+        public GetFriendsRequest(bool includefriendsof, bool includegroups)
         {
             if (includefriendsof)
                 this.includefriendof = 1;
@@ -28,17 +28,12 @@ namespace LJXMLRPC.Calls
                 this.includegroups = 0;
 
         }
-        public string username { get; set; }
-        public string auth_method { get; set; }
-        public string auth_challenge { get; set; }
-        public string auth_response { get; set; }
-        public string clientversion { get; set; }
         public int includefriendof;
         public int includegroups;
     }
 
     [XmlRpcMissingMapping(MappingAction.Ignore)]
-    public struct GetFriendsReply
+    public class GetFriendsReply
     {
         public Friend[] friends;
         public FriendGroup[] friendgroups;
