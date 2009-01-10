@@ -12,16 +12,17 @@ namespace LJXMLRPC
 {
     public static class MakeCall
     {
+		public static bool UseProxy;
         internal static GetChallengeReply GetChallenge()
         {
-            ILJGetChallenge getChallengeProxy = XmlRpcProxyGen.Create<ILJGetChallenge>();
+            ILJGetChallenge getChallengeProxy = CreateProxy<ILJGetChallenge>();
             GetChallengeReply reply = getChallengeProxy.GetChallenge();
             return reply;
         }
 
         public static LoginReply Login()
         {
-            ILJLogin loginProxy = XmlRpcProxyGen.Create<ILJLogin>();
+            ILJLogin loginProxy = CreateProxy<ILJLogin>();
             LoginRequest request = new LoginRequest();
 			request.PopulateWithLoginInfo();
 			LoginReply reply = loginProxy.Login(request);
@@ -30,10 +31,8 @@ namespace LJXMLRPC
 
 		public static GetFriendsReply GetFriends()
 		{
-			ILJGetFriends getFriendsProxy = XmlRpcProxyGen.Create<ILJGetFriends>();
-			//Need to run Fiddler so that it redirects this request...
-			//proxy2.Proxy = new WebProxy("http://127.0.0.1:9999");
-
+			ILJGetFriends getFriendsProxy = CreateProxy<ILJGetFriends>();
+			
 			GetFriendsRequest request = new GetFriendsRequest(true, true);
 			request.PopulateWithLoginInfo();
 			GetFriendsReply reply = getFriendsProxy.GetFriends(request);
@@ -45,7 +44,7 @@ namespace LJXMLRPC
 
 		public static EditFriendsReply EditFriends()
 		{
-			ILJEditFriends editFriendsProxy = XmlRpcProxyGen.Create<ILJEditFriends>();
+			ILJEditFriends editFriendsProxy = CreateProxy<ILJEditFriends>();
 			EditFriendsRequest request = new EditFriendsRequest();
 			request.PopulateWithLoginInfo();
 			request.add = new Friend[1];
@@ -53,6 +52,17 @@ namespace LJXMLRPC
 			request.add[0].username = "AndrewDucker";
 			EditFriendsReply reply = editFriendsProxy.EditFriends(request);
 			return reply;
+		}
+
+		private static T CreateProxy<T>() where T:IXmlRpcProxy
+		{
+			T proxy = XmlRpcProxyGen.Create<T>();
+			if (UseProxy)
+			{
+				proxy.Proxy = new WebProxy("http://127.0.0.1:9999");
+			}
+			return proxy;
+
 		}
     }
 }

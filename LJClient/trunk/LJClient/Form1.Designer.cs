@@ -49,6 +49,7 @@ namespace LJClient
 			this.UserNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btnGroupsVsUsers = new System.Windows.Forms.Button();
 			this.btnAddFriend = new System.Windows.Forms.Button();
+			this.chkUseProxy = new System.Windows.Forms.CheckBox();
 			this.FriendViews.SuspendLayout();
 			this.pgListOfGroups.SuspendLayout();
 			this.pgGroupsVsUsers.SuspendLayout();
@@ -237,11 +238,23 @@ namespace LJClient
 			this.btnAddFriend.UseVisualStyleBackColor = true;
 			this.btnAddFriend.Click += new System.EventHandler(this.btnAddFriend_Click);
 			// 
+			// chkUseProxy
+			// 
+			this.chkUseProxy.AutoSize = true;
+			this.chkUseProxy.Location = new System.Drawing.Point(269, 37);
+			this.chkUseProxy.Name = "chkUseProxy";
+			this.chkUseProxy.Size = new System.Drawing.Size(80, 17);
+			this.chkUseProxy.TabIndex = 14;
+			this.chkUseProxy.Text = "Use Proxy?";
+			this.chkUseProxy.UseVisualStyleBackColor = true;
+			this.chkUseProxy.CheckedChanged += new System.EventHandler(this.chkUseProxy_CheckedChanged);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(855, 592);
+			this.Controls.Add(this.chkUseProxy);
 			this.Controls.Add(this.btnAddFriend);
 			this.Controls.Add(this.btnGroupsVsUsers);
 			this.Controls.Add(this.FriendViews);
@@ -286,6 +299,7 @@ namespace LJClient
 		private System.Windows.Forms.DataGridView dataGridGroupsVsUsers;
 		private System.Windows.Forms.DataGridViewTextBoxColumn UserNameColumn;
 		private System.Windows.Forms.Button btnAddFriend;
+		private System.Windows.Forms.CheckBox chkUseProxy;
     }
 }
 

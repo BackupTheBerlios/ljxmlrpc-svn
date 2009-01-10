@@ -59,13 +59,16 @@ namespace LJClient
         private List<string> Groups(SortedList<int, FriendGroup> groupList, Friend friend)
         {
             List<string> groups = new List<string>();
-			BitArray group = new BitArray(new int[] { friend.groupmask });
-			//We skip group 0 - it's the default group for all people...
-			for (int i = 1; i < group.Length; i++)
+			if (friend.groupmask.HasValue)
 			{
-				if (group[i])
+				BitArray group = new BitArray(new int[] { friend.groupmask.Value });
+				//We skip group 0 - it's the default group for all people...
+				for (int i = 1; i < group.Length; i++)
 				{
-					groups.Add(groupList[i].name);
+					if (group[i])
+					{
+						groups.Add(groupList[i].name);
+					}
 				}
 			}
             return groups;
@@ -177,6 +180,11 @@ namespace LJClient
 			{
 				MessageBox.Show(friend.fullname);
 			}
+		}
+
+		private void chkUseProxy_CheckedChanged(object sender, EventArgs e)
+		{
+			MakeCall.UseProxy = chkUseProxy.Checked;
 		}
 
     }

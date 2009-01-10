@@ -9,7 +9,7 @@ namespace LJXMLRPC.Calls
     [XmlRpcUrl(@"http://www.livejournal.com/interface/xmlrpc")]
     public interface ILJEditFriends : IXmlRpcProxy
     {
-        [XmlRpcMethod("LJ.XMLRPC.getfriends")]
+        [XmlRpcMethod("LJ.XMLRPC.editfriends")]
         EditFriendsReply EditFriends(EditFriendsRequest getFriendsRequest);
     }
 

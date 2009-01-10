@@ -13,7 +13,7 @@ namespace LJXMLRPC.Data
         public string type;
         public string fgcolor;
         public string bgcolor;
-        public int groupmask;
+        public int? groupmask;
 		public string fullname;
     }
 }
