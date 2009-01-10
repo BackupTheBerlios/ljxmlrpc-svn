@@ -178,7 +178,7 @@ namespace LJClient
 			EditFriendsReply reply = MakeCall.EditFriends();
 			foreach (Friend friend in reply.added)
 			{
-				MessageBox.Show(friend.fullname);
+				MessageBox.Show(friend.FullName);
 			}
 		}
 

@@ -6,7 +6,7 @@ using CookComputing.XmlRpc;
 namespace LJXMLRPC.Data
 {
     [XmlRpcMissingMapping(MappingAction.Ignore)]
-    public struct FriendGroup
+    public class FriendGroup
     {
         [XmlRpcMember("public")]
         public int Public;

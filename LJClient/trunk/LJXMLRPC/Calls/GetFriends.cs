@@ -54,16 +54,14 @@ namespace LJXMLRPC.Calls
 
         public void PostProcess()
         {
-            for (int i = 0; i < friends.Length; i++)
-            {
-                friends[i].UserName = friends[i].username as string;
-            }
-
-            for (int i = 0; i < friendofs.Length; i++)
-            {
-                friendofs[i].UserName = friendofs[i].username as string;
-            }
-
+			foreach (Friend friend in friends)
+			{
+				friend.PostProcess();
+			}
+			foreach (Friend friend in friendofs)
+			{
+				friend.PostProcess();
+			}
 			for (int i = 0; i < friendgroups.Length; i++)
 			{
 				friendgroups[i].BitmapID = (int)Math.Pow(2, friendgroups[i].id);
