@@ -41,15 +41,13 @@ namespace LJClient
 			this.ljPassword = new System.Windows.Forms.TextBox();
 			this.lblUserName = new System.Windows.Forms.Label();
 			this.lblPassword = new System.Windows.Forms.Label();
-			this.btnPopulateFriends = new System.Windows.Forms.Button();
 			this.FriendViews = new System.Windows.Forms.TabControl();
 			this.pgListOfGroups = new System.Windows.Forms.TabPage();
 			this.pgGroupsVsUsers = new System.Windows.Forms.TabPage();
 			this.dataGridGroupsVsUsers = new System.Windows.Forms.DataGridView();
 			this.UserNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.btnGroupsVsUsers = new System.Windows.Forms.Button();
-			this.btnAddFriend = new System.Windows.Forms.Button();
 			this.chkUseProxy = new System.Windows.Forms.CheckBox();
+			this.btnUpdateFriends = new System.Windows.Forms.Button();
 			this.FriendViews.SuspendLayout();
 			this.pgListOfGroups.SuspendLayout();
 			this.pgGroupsVsUsers.SuspendLayout();
@@ -150,22 +148,12 @@ namespace LJClient
 			this.lblPassword.TabIndex = 7;
 			this.lblPassword.Text = "Password";
 			// 
-			// btnPopulateFriends
-			// 
-			this.btnPopulateFriends.Location = new System.Drawing.Point(438, 77);
-			this.btnPopulateFriends.Name = "btnPopulateFriends";
-			this.btnPopulateFriends.Size = new System.Drawing.Size(99, 23);
-			this.btnPopulateFriends.TabIndex = 10;
-			this.btnPopulateFriends.Text = "Populate Friends";
-			this.btnPopulateFriends.UseVisualStyleBackColor = true;
-			this.btnPopulateFriends.Click += new System.EventHandler(this.btnPopulateFriends_Click);
-			// 
 			// FriendViews
 			// 
 			this.FriendViews.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
-			this.FriendViews.Controls.Add(this.pgListOfGroups);
 			this.FriendViews.Controls.Add(this.pgGroupsVsUsers);
+			this.FriendViews.Controls.Add(this.pgListOfGroups);
 			this.FriendViews.Location = new System.Drawing.Point(12, 141);
 			this.FriendViews.Name = "FriendViews";
 			this.FriendViews.SelectedIndex = 0;
@@ -216,28 +204,6 @@ namespace LJClient
 			this.UserNameColumn.ReadOnly = true;
 			this.UserNameColumn.Width = 85;
 			// 
-			// btnGroupsVsUsers
-			// 
-			this.btnGroupsVsUsers.AutoSize = true;
-			this.btnGroupsVsUsers.Location = new System.Drawing.Point(421, 124);
-			this.btnGroupsVsUsers.Name = "btnGroupsVsUsers";
-			this.btnGroupsVsUsers.Size = new System.Drawing.Size(141, 23);
-			this.btnGroupsVsUsers.TabIndex = 12;
-			this.btnGroupsVsUsers.Text = "Populate Groups Vs Users";
-			this.btnGroupsVsUsers.UseVisualStyleBackColor = true;
-			this.btnGroupsVsUsers.Click += new System.EventHandler(this.btnGroupsVsUsers_Click);
-			// 
-			// btnAddFriend
-			// 
-			this.btnAddFriend.AutoSize = true;
-			this.btnAddFriend.Location = new System.Drawing.Point(676, 103);
-			this.btnAddFriend.Name = "btnAddFriend";
-			this.btnAddFriend.Size = new System.Drawing.Size(110, 23);
-			this.btnAddFriend.TabIndex = 13;
-			this.btnAddFriend.Text = "Add AndrewDucker";
-			this.btnAddFriend.UseVisualStyleBackColor = true;
-			this.btnAddFriend.Click += new System.EventHandler(this.btnAddFriend_Click);
-			// 
 			// chkUseProxy
 			// 
 			this.chkUseProxy.AutoSize = true;
@@ -249,16 +215,26 @@ namespace LJClient
 			this.chkUseProxy.UseVisualStyleBackColor = true;
 			this.chkUseProxy.CheckedChanged += new System.EventHandler(this.chkUseProxy_CheckedChanged);
 			// 
+			// btnUpdateFriends
+			// 
+			this.btnUpdateFriends.AutoSize = true;
+			this.btnUpdateFriends.Enabled = false;
+			this.btnUpdateFriends.Location = new System.Drawing.Point(282, 115);
+			this.btnUpdateFriends.Name = "btnUpdateFriends";
+			this.btnUpdateFriends.Size = new System.Drawing.Size(89, 23);
+			this.btnUpdateFriends.TabIndex = 15;
+			this.btnUpdateFriends.Text = "Update Friends";
+			this.btnUpdateFriends.UseVisualStyleBackColor = true;
+			this.btnUpdateFriends.Click += new System.EventHandler(this.btnUpdateFriends_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(855, 592);
+			this.Controls.Add(this.btnUpdateFriends);
 			this.Controls.Add(this.chkUseProxy);
-			this.Controls.Add(this.btnAddFriend);
-			this.Controls.Add(this.btnGroupsVsUsers);
 			this.Controls.Add(this.FriendViews);
-			this.Controls.Add(this.btnPopulateFriends);
 			this.Controls.Add(this.lblPassword);
 			this.Controls.Add(this.lblUserName);
 			this.Controls.Add(this.ljPassword);
@@ -291,15 +267,13 @@ namespace LJClient
         private System.Windows.Forms.TextBox ljPassword;
         private System.Windows.Forms.Label lblUserName;
 		private System.Windows.Forms.Label lblPassword;
-		private System.Windows.Forms.Button btnPopulateFriends;
 		private System.Windows.Forms.TabControl FriendViews;
 		private System.Windows.Forms.TabPage pgListOfGroups;
 		private System.Windows.Forms.TabPage pgGroupsVsUsers;
-		private System.Windows.Forms.Button btnGroupsVsUsers;
 		private System.Windows.Forms.DataGridView dataGridGroupsVsUsers;
 		private System.Windows.Forms.DataGridViewTextBoxColumn UserNameColumn;
-		private System.Windows.Forms.Button btnAddFriend;
 		private System.Windows.Forms.CheckBox chkUseProxy;
+		private System.Windows.Forms.Button btnUpdateFriends;
     }
 }
 

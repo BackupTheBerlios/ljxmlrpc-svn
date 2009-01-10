@@ -29,11 +29,18 @@ namespace LJClient
 
 			friends = friendsReply.friends;
 			groups = friendsReply.FriendGroups;
-			
+			PopulateGroupsVsUsers();
+			PopulateFriendsTable();
+			btnUpdateFriends.Enabled = true;
         }
 
 
 		private void btnPopulateFriends_Click(object sender, EventArgs e)
+		{
+			PopulateFriendsTable();
+		}
+
+		private void PopulateFriendsTable()
 		{
 			friendsList.Items.Clear();
 
@@ -101,34 +108,47 @@ namespace LJClient
                 ljPassword.Text = "Retrieved";
             }
         }
-
+		DataTable tblgroupsVsUsers;
 		private void btnGroupsVsUsers_Click(object sender, EventArgs e)
 		{
-			DataTable table = new DataTable();
-			table.Columns.Add("User Name",typeof(string));
+			PopulateGroupsVsUsers();
+		}
+
+		private void PopulateGroupsVsUsers()
+		{
+			dataGridGroupsVsUsers.Columns.Clear();
+			DataGridViewColumn userNameColumn = new DataGridViewTextBoxColumn();
+			userNameColumn.HeaderText = "User Name";
+			userNameColumn.DataPropertyName = "User Name";
+			dataGridGroupsVsUsers.Columns.Add(userNameColumn);
+			tblgroupsVsUsers = new DataTable();
+			tblgroupsVsUsers.Columns.Add("User Name", typeof(string));
 			desiredColumnWidths = new Dictionary<string, int>();
 			dataGridGroupsVsUsers.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridGroupsVsUsers.Font.Name, 8);
 			foreach (KeyValuePair<int, FriendGroup> group in groups)
 			{
 				DataGridViewCheckBoxColumn column = new DataGridViewCheckBoxColumn();
 				column.HeaderText = group.Value.name;
-				table.Columns.Add(group.Value.name,typeof(bool));
+				DataColumn tableColumn = new DataColumn(group.Value.name, typeof(bool));
+				tableColumn.DefaultValue = false;
+				tableColumn.AllowDBNull = false;
+				tblgroupsVsUsers.Columns.Add(tableColumn);
 				dataGridGroupsVsUsers.Columns.Add(column);
 				column.DataPropertyName = column.HeaderText;
-				desiredColumnWidths.Add(column.HeaderText,column.GetPreferredWidth(DataGridViewAutoSizeColumnMode.DisplayedCells,true));
+				desiredColumnWidths.Add(column.HeaderText, column.GetPreferredWidth(DataGridViewAutoSizeColumnMode.DisplayedCells, true));
 			}
 			SetMinimumWidthsForColumns();
 			foreach (Friend friend in friends)
 			{
-				DataRow row = table.NewRow();
+				DataRow row = tblgroupsVsUsers.NewRow();
 				row["User Name"] = friend.UserName;
 				foreach (FriendGroup group in groups.Values)
 				{
 					row[group.name] = ((group.BitmapID & friend.groupmask) == group.BitmapID);
 				}
-				table.Rows.Add(row);
+				tblgroupsVsUsers.Rows.Add(row);
 			}
-			dataGridGroupsVsUsers.DataSource = table;
+			dataGridGroupsVsUsers.DataSource = tblgroupsVsUsers;
 		}
 
 		private void dataGridGroupsVsUsers_Resize(object sender, EventArgs e)
@@ -173,19 +193,30 @@ namespace LJClient
 			}
 		}
 
-		private void btnAddFriend_Click(object sender, EventArgs e)
-		{
-			EditFriendsReply reply = MakeCall.EditFriends();
-			foreach (Friend friend in reply.added)
-			{
-				MessageBox.Show(friend.FullName);
-			}
-		}
-
 		private void chkUseProxy_CheckedChanged(object sender, EventArgs e)
 		{
 			MakeCall.UseProxy = chkUseProxy.Checked;
 		}
 
+		private void btnUpdateFriends_Click(object sender, EventArgs e)
+		{
+			List<Friend> friendsToUpdate = new List<Friend>();
+			foreach (DataRow row in tblgroupsVsUsers.Rows)
+			{
+				Friend friend = new Friend();
+				friend.username = row["User Name"];
+				friend.groupmask = 1;
+				foreach (FriendGroup group in groups.Values)
+				{
+					if ((bool)row[group.name])
+					{
+						friend.groupmask += group.BitmapID;
+					}
+				}
+				friendsToUpdate.Add(friend);
+			}
+			MakeCall.EditFriends(friendsToUpdate.ToArray(), null);
+
+		}
     }
 }

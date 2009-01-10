@@ -32,7 +32,6 @@ namespace LJXMLRPC
 		public static GetFriendsReply GetFriends()
 		{
 			ILJGetFriends getFriendsProxy = CreateProxy<ILJGetFriends>();
-			
 			GetFriendsRequest request = new GetFriendsRequest(true, true);
 			request.PopulateWithLoginInfo();
 			GetFriendsReply reply = getFriendsProxy.GetFriends(request);
@@ -42,14 +41,12 @@ namespace LJXMLRPC
 			return reply;
 		}
 
-		public static EditFriendsReply EditFriends()
+		public static EditFriendsReply EditFriends(Friend[] friendsToAddOrEdit, Friend[] friendsToDelete)
 		{
 			ILJEditFriends editFriendsProxy = CreateProxy<ILJEditFriends>();
 			EditFriendsRequest request = new EditFriendsRequest();
 			request.PopulateWithLoginInfo();
-			request.add = new Friend[1];
-			request.add[0] = new Friend();
-			request.add[0].username = "AndrewDucker";
+			request.add = friendsToAddOrEdit;
 			EditFriendsReply reply = editFriendsProxy.EditFriends(request);
 			return reply;
 		}
@@ -62,7 +59,6 @@ namespace LJXMLRPC
 				proxy.Proxy = new WebProxy("http://127.0.0.1:9999");
 			}
 			return proxy;
-
 		}
     }
 }
