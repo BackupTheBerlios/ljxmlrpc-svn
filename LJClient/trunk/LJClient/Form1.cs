@@ -129,6 +129,7 @@ namespace LJClient
 			{
 				DataGridViewCheckBoxColumn column = new DataGridViewCheckBoxColumn();
 				column.HeaderText = group.Value.name;
+				column.SortMode = DataGridViewColumnSortMode.Automatic;
 				DataColumn tableColumn = new DataColumn(group.Value.name, typeof(bool));
 				tableColumn.DefaultValue = false;
 				tableColumn.AllowDBNull = false;
